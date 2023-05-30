@@ -1,0 +1,46 @@
+{
+    "name": "react_cli",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "npm run dev",
+        "dev": "cross-env NODE_ENV=development webpack serve --config ./config/webpack.dev.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "browserslist": [
+        "last 2 version",
+        "> 1%",
+        "not dead"
+    ],
+    "devDependencies": {
+        "@babel/core": "^7.22.1",
+        "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
+        "babel-loader": "^9.1.2",
+        "babel-preset-react-app": "^10.0.1",
+        "cross-env": "^7.0.3",
+        "css-loader": "^6.8.1",
+        "eslint-config-react-app": "^7.0.1",
+        "eslint-webpack-plugin": "^4.0.1",
+        "html-webpack-plugin": "^5.5.1",
+        "less-loader": "^11.1.1",
+        "postcss-loader": "^7.3.2",
+        "postcss-preset-env": "^8.4.1",
+        "react-refresh": "^0.14.0",
+        "sass": "^1.62.1",
+        "sass-loader": "^13.3.1",
+        "style-loader": "^3.3.3",
+        "stylus-loader": "^7.1.2",
+        "webpack": "^5.84.1",
+        "webpack-cli": "^5.1.1",
+        "webpack-dev-server": "^4.15.0",
+        "wepack": "^0.0.1"
+    },
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.11.2"
+    }
+}
