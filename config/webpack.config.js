@@ -26,7 +26,19 @@ const getStyleLoaders = (preProcessor) => {
                 },
             },
         },
-        preProcessor,
+        preProcessor && {
+            loader: preProcessor,
+            // 自定义主题
+            options:
+                preProcessor === "less-loader"
+                    ? {
+                          lessOptions: {
+                              modifyVars: { "@primary-color": "#1DA57A" },
+                              javascriptEnabled: true,
+                          },
+                      }
+                    : {},
+        },
     ].filter(Boolean);
 };
 
@@ -131,6 +143,27 @@ module.exports = {
     optimization: {
         splitChunks: {
             chunks: "all",
+            cacheGroups: {
+                // 将node_modules中比较大的模块单独打包 从而并行加载速度更好
+                antd: {
+                    name: "chunk-antd",
+                    test: /[\\/]node_modules[\\/]antd(.*)/,
+                    priority: 30,
+                },
+                // 将react相关的库单独打包 减少node_modules的chunk体积
+                react: {
+                    name: "react",
+                    test: /[\\/]node_modules[\\/]react(.*)?[\\/]/,
+                    chunks: "initial",
+                    priority: 20,
+                },
+                libs: {
+                    name: "chunk-libs",
+                    test: /[\\/]node_module[\\/]/,
+                    priority: 10,
+                    chunks: "initial",
+                },
+            },
         },
         runtimeChunk: {
             name: (entrypoint) => `runtime~${entrypoint.name}.js`,
@@ -181,4 +214,5 @@ module.exports = {
         hot: true, // 开启HMR
         historyApiFallback: true, // 解决前端路由刷新404问题
     },
+    performance: false, // 关闭性能分析 提高速度
 };
